@@ -27,7 +27,7 @@
 .bcard .bprev { width: 62px; pointer-events: none; }
 .bcard.dropping, .bcard:hover { border-color: var(--steel); }
 .benchgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; align-items: start; }
-@media (max-width: 640px) { .benchgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; } .benchwrap { padding: 4px; } .bhead b { font-size: 0.8rem; } .bhead span { display: none; } .benchwrap .readout { font-size: 0.7rem; padding: 6px; } .benchwrap .bench, .benchwrap .table.empty { aspect-ratio: auto !important; min-height: 240px !important; height: auto !important; } .benchwrap .bench .btn { width: 100%; min-width: 0; padding: 6px 2px; font-size: 0.62rem; letter-spacing: 0; } .benchwrap .bench { padding-left: 2px; padding-right: 2px; } .bhead b { overflow-wrap: anywhere; } }
+@media all { .benchgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; } .benchwrap { padding: 4px; } .bhead b { font-size: 0.8rem; } .bhead span { display: none; } .benchwrap .readout { font-size: 0.7rem; padding: 6px; } .benchwrap .bench, .benchwrap .table.empty { aspect-ratio: auto !important; min-height: 240px !important; height: auto !important; } .benchwrap .bench .btn { width: 100%; min-width: 0; padding: 6px 2px; font-size: 0.62rem; letter-spacing: 0; } .benchwrap .bench { padding-left: 2px; padding-right: 2px; } .bhead b { overflow-wrap: anywhere; } }
 .benchwrap { border: 1px solid var(--line); background: var(--panel); padding: 8px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .benchwrap.cur { border-color: var(--amber); }
 .benchwrap.lock { opacity: 0.5; border-style: dashed; }
@@ -38,6 +38,31 @@
 .pkghost { position: fixed; left: 0; top: 0; z-index: 64; pointer-events: none; transform-origin: 50% 50%; filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.5)); }
 .pkghost > .dollstage { width: 100% !important; height: 100% !important; max-width: none !important; margin: 0 !important; }
 .pkghost * { pointer-events: none; }
+
+/* ---- Stone, the tutorial teacher ---- */
+#stone { position: fixed; left: 8px; right: 8px; bottom: calc(8px + env(safe-area-inset-bottom, 0px)); max-width: 414px; margin: 0 auto; z-index: 95; display: flex; gap: 10px; padding: 8px 10px; background: var(--panel2); border: 2px solid var(--amber); box-shadow: 0 -8px 24px rgba(0,0,0,0.65); }
+#stone .stone-av { width: 54px; height: 54px; flex: none; border: 1px solid var(--line); }
+#stone .stone-av svg { width: 100%; height: 100%; display: block; }
+#stone .stone-body { min-width: 0; flex: 1; }
+#stone .stone-name { font-family: var(--display); font-weight: 700; letter-spacing: 0.08em; color: var(--amber); font-size: 0.95rem; }
+#stone .stone-name small { font-family: var(--mono); font-weight: 400; font-size: 0.62rem; color: var(--muted); letter-spacing: 0.06em; margin-left: 6px; text-transform: uppercase; }
+#stone p { margin: 2px 0 6px; font-size: 0.86rem; line-height: 1.28; }
+#stone .stone-btns { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+#stone .btn.lnk { background: none; border: 0; color: var(--muted); text-decoration: underline; padding: 4px 2px; margin-left: auto; box-shadow: none; }
+body.tuton { padding-bottom: 190px; }
+body.tuton .fnav { bottom: 170px; }
+#tutblock { position: fixed; inset: 0; z-index: 80; background: transparent; touch-action: none; }
+.tutglow { outline: 3px solid #e0a93f !important; outline-offset: 3px; border-radius: 6px; animation: tutpulse 1s ease-in-out infinite; position: relative; z-index: 3; }
+@keyframes tutpulse { 0%, 100% { box-shadow: 0 0 6px 1px rgba(224,169,63,0.35); } 50% { box-shadow: 0 0 18px 6px rgba(224,169,63,0.7); outline-color: rgba(224,169,63,0.55); } }
+.sarm.stone { z-index: 92; transition: left var(--d, 800ms) cubic-bezier(0.65, 0, 0.35, 1), top var(--d, 800ms) cubic-bezier(0.65, 0, 0.35, 1); }
+.sarm.stone .armsvg g { fill: #f6f8f9; stroke: #15110f; stroke-width: 3; stroke-dasharray: none; }
+.sarm.stone::after { content: 'STONE'; position: absolute; left: -22px; top: 14px; font: 700 0.55rem var(--mono); letter-spacing: 0.1em; background: var(--amber); color: #15110f; padding: 1px 5px; }
+.tutghost { position: fixed; z-index: 91; transform: translate(-50%, -50%); pointer-events: none; opacity: 0.92; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.55)); transition: left var(--d, 900ms) cubic-bezier(0.65, 0, 0.35, 1), top var(--d, 900ms) cubic-bezier(0.65, 0, 0.35, 1), opacity 0.3s; margin: 0 !important; }
+/* a client's unit is not yours: it is marked red everywhere */
+.dollstage.client { filter: drop-shadow(0 0 7px rgba(208, 73, 62, 0.95)); }
+.dollstage.client .dart g { stroke: #d0493e; }
+.dollstage.client::after { content: "CLIENT'S UNIT · NOT YOURS"; position: absolute; left: 50%; top: -9px; transform: translateX(-50%); white-space: nowrap; background: #d0493e; color: #fff; font: 700 0.5rem var(--mono); letter-spacing: 0.06em; padding: 2px 6px; z-index: 7; pointer-events: none; }
+.dollstage.client.mini::after, .dollstage.client.incrate::after { font-size: 0.4rem; padding: 1px 3px; }
 </style>
 <title>Biomechanics</title>
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -72,7 +97,7 @@ body {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.app { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+.app { max-width: none; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
 .app > * { min-width: 0; }
 h1 { font-family: var(--display); font-weight: 900; font-size: 2rem; letter-spacing: 0.01em; text-transform: uppercase; margin: 0; line-height: 1; }
 .top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
@@ -96,7 +121,7 @@ button:focus-visible { outline: 2px solid var(--steel); outline-offset: 2px; }
 .tools button svg { width: 28px; height: 28px; display: block; overflow: visible; }
 .tools button:hover { color: var(--ink); transform: translateY(-2px); }
 .tools button.on { border-color: var(--amber); color: var(--amber); background: linear-gradient(#3a2e17, #241c0e); box-shadow: 0 0 10px rgba(224, 169, 63, 0.35); transform: translateY(-2px); }
-.fnav { position: fixed; right: max(10px, env(safe-area-inset-right, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 30; display: flex; flex-direction: column; gap: 6px; }
+.fnav { position: fixed; right: max(10px, env(safe-area-inset-right, 0px), calc(50vw - 205px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); z-index: 30; display: flex; flex-direction: column; gap: 6px; }
 .fnav button { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--steel); background: rgba(16, 14, 13, 0.92); color: var(--steel); display: grid; place-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.6); transition: transform 0.12s, background 0.12s; }
 .fnav button:hover { background: #1f2a30; transform: scale(1.08); }
 .fnav button:active { transform: scale(0.94); }
@@ -267,7 +292,7 @@ button:focus-visible { outline: 2px solid var(--steel); outline-offset: 2px; }
 .cap.full i { background: var(--blood); }
 .bag { display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 8px; min-height: 52px; align-items: end; }
 .trash { border: 1px dashed var(--blood); color: var(--blood); font-family: var(--mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; text-align: center; padding: 10px; margin-top: 8px; }
-@media (max-width: 560px) {  .maps button { font-size: 0.66rem; letter-spacing: 0; padding: 10px 0; } .pc { grid-template-columns: 1fr; } h1 { font-size: 1.7rem; } .yard { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); } }
+@media all {  .maps button { font-size: 0.66rem; letter-spacing: 0; padding: 10px 0; } .pc { grid-template-columns: 1fr; } h1 { font-size: 1.7rem; } .yard { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); } }
 
 .maps { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 .maps button { font-size: 0.8rem; padding: 10px 2px; }
@@ -303,7 +328,7 @@ button:focus-visible { outline: 2px solid var(--steel); outline-offset: 2px; }
 .dbgline { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 8px; }
 .dbg input { background: var(--panel2); color: var(--ink); border: 1px solid var(--line); padding: 6px 8px; font-family: var(--mono); font-size: 0.9rem; width: 7em; }
 .dbg input#dbgpw { width: 6em; text-align: center; }
-@media (max-width: 600px) { .maps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media all { .maps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .pwshow { margin-top: 8px; min-height: 2rem; text-align: center; font-family: var(--mono); font-size: 1.4rem; letter-spacing: 0.3em; color: var(--amber); }
 .keypad { display: grid; grid-template-columns: repeat(3, 64px); gap: 8px; justify-content: center; margin-top: 8px; }
 .key { height: 52px; background: var(--panel2); border: 1px solid var(--line); border-bottom-width: 3px; border-radius: 6px; font-family: var(--display); font-weight: 700; font-size: 1.4rem; color: var(--ink); }
@@ -367,10 +392,10 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
   .btn, .maps button, .tools button, .mail, .ctxi { min-height: 44px; }
   .btn.sm { min-height: 38px; padding: 6px 10px; font-size: 0.8rem; }
   .ctxi { padding: 11px 10px; }
-  .part.ico { min-width: 44px; }
+  .part.ico.item { min-width: 44px; }
   .ctx { max-width: calc(100vw - 8px); }
 }
-@media (max-width: 560px) {
+@media all {
   .pack { grid-template-columns: minmax(0, 1fr); }
   .tools { gap: 2px; }
   .panel { padding-left: 10px; padding-right: 10px; }
@@ -414,6 +439,67 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
 @keyframes livepulse { 50% { opacity: 0.25; } }
 .pkq ul { margin: 6px 0 0; padding-left: 18px; font-family: var(--mono); font-size: 0.78rem; }
 .pkq li.now { color: var(--amber); }
+
+/* phone layout: one 430px column, centred, on any screen */
+html { background: #050404; }
+body { max-width: 430px; margin: 0 auto; box-sizing: border-box; min-height: 100vh; box-shadow: 0 0 0 1px var(--line), 0 0 50px rgba(0, 0, 0, 0.7); }
+/* organs and limbs scale with the chassis they sit in */
+.dslot .part.ico, .dollstage .part.ico { min-width: 0 !important; min-height: 0 !important; width: 100%; height: 100%; }
+/* single surgical table view */
+.bviewbar { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; }
+.bviewbar b { flex: 1; text-align: center; font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; }
+.bviewbar .btn { min-width: 44px; }
+.benchgrid.single { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.benchgrid.single .benchwrap { padding: 8px; }
+.benchgrid.single .bhead span { display: inline; }
+.benchgrid.single .bhead b { font-size: 1rem; }
+.benchgrid.single .benchwrap .readout { font-size: 0.82rem; padding: 10px; }
+.benchgrid.single .benchwrap .bench .btn { font-size: 0.8rem; padding: 10px; letter-spacing: 0.04em; }
+.benchgrid.single .benchwrap .bench { max-width: none; }
+.benchgrid.single .dollstage.ontable { max-width: 340px; }
+
+/* tools: 2 columns x 4 rows, big icons */
+.tools { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 4px !important; }
+.tools button { flex-direction: row !important; justify-content: flex-start; gap: 10px !important; padding: 4px 10px !important; min-height: 42px; font-size: 0.72rem !important; letter-spacing: 0.06em !important; text-align: left; }
+.tools button svg { width: 34px !important; height: 34px !important; flex: none; }
+/* scan read-out floating above each part */
+.fstat { position: fixed; z-index: 85; pointer-events: none; transform: translate(-50%, -100%); background: rgba(11, 9, 8, 0.92); color: #cfe0e8; border: 1px solid #8fb0c0; border-radius: 3px; padding: 2px 5px; font: 600 0.55rem/1.25 var(--mono); white-space: nowrap; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.6); animation: fstat 3.6s ease-out forwards; }
+.fstat.bad { color: #ffb4aa; border-color: #d0493e; }
+.fstat b { display: block; color: #e0a93f; font-size: 0.52rem; letter-spacing: 0.06em; text-transform: uppercase; }
+@keyframes fstat { 0% { opacity: 0; margin-top: 6px; } 8% { opacity: 1; margin-top: 0; } 70% { opacity: 1; margin-top: -6px; } 100% { opacity: 0; margin-top: -22px; } }
+
+/* the scrapyard: 30 wrecks in a scroll box */
+.yardscroll { overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; touch-action: pan-x pan-y; border: 1px solid var(--line); background: rgba(0, 0, 0, 0.18); scrollbar-width: thin; scrollbar-color: var(--amber) #1b1613; }
+.yardscroll::-webkit-scrollbar { height: 12px; }
+.yardscroll::-webkit-scrollbar-track { background: #1b1613; }
+.yardscroll::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 5px; }
+.yardcount { text-align: center; padding: 4px 0; }
+.yardscroll .yard { display: flex; flex-wrap: nowrap; gap: 10px; width: max-content; padding: 22px 10px 12px; }
+.yardscroll .yard .wr { flex: none; width: 170px; }
+.yardscroll .yard .dollstage.yard { width: 170px; min-width: 170px; max-width: 170px; flex: none; }
+
+.snapped { animation: snapflash 0.4s ease-out; }
+@keyframes snapflash { 0% { box-shadow: 0 0 0 0 rgba(224, 169, 63, 0.9); } 100% { box-shadow: 0 0 0 14px rgba(224, 169, 63, 0); } }
+/* save slots */
+.bsbtn { margin-left: auto; padding: 6px 10px; font-size: 0.8rem; }
+#bsmenu { position: fixed; inset: 0; z-index: 300; background: #0d0b0a; overflow-y: auto; -webkit-overflow-scrolling: touch; display: flex; align-items: flex-start; justify-content: center; padding: calc(env(safe-area-inset-top, 0px) + 18px) 14px calc(env(safe-area-inset-bottom, 0px) + 24px); }
+#bsmenu[hidden] { display: none !important; }
+.bsbox { width: 100%; max-width: 520px; display: flex; flex-direction: column; gap: 10px; }
+.bsbox h1 { font-size: 2.2rem; }
+.bsbox h2 { font-family: var(--display); font-size: 1.4rem; margin: 0; text-transform: uppercase; letter-spacing: 0.04em; }
+.bsnote { margin: 0; color: var(--muted); font-size: 0.85rem; line-height: 1.4; }
+.bswarn { margin: 0; color: #e08a7f; font-size: 0.85rem; }
+.bsslot { border: 1px solid var(--line); background: var(--panel); padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.bsslot.on { border-color: var(--amber); }
+.bsslot .bsname { font-family: var(--display); font-weight: 700; font-size: 1.25rem; letter-spacing: 0.04em; text-transform: uppercase; }
+.bsslot .bsname i { font-style: normal; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em; color: var(--amber); margin-left: 8px; }
+.bsslot .bsinfo { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); }
+.bsbtns { display: flex; flex-wrap: wrap; gap: 8px; }
+.bsmain { gap: 14px; margin-top: 10vh; text-align: center; }
+.bsmain h1 { font-size: 3rem; }
+.btn.bsbig { width: 100%; min-height: 58px; font-size: 1.4rem; align-self: stretch; }
+.bsbtns .btn { flex: 1 1 90px; min-height: 42px; align-self: stretch; }
+.btn.bsdanger { background: #8a3128; color: #fff; }
 </style>
 
 <div class="app" id="app">
@@ -450,7 +536,7 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
       <li>On a phone: touch and hold a body for a moment, then drag. Tap anything to read its name in the status line. The round buttons at the right edge scroll the page.</li>
       <li>Playground: wake a finished biomecha, then drag it onto the Playground tab. Click it to ask what to do: walk, chat, fight, or work in the scrapyard as a moving shadow. Faster Athletics means faster work.</li>
       <li>Part looks: once a part is scanned, its design shows its strongest stat. Chevrons are Athletics, circuit lines Logics, claw marks Combat, a heart Companion, bands Muscleman. Average parts stay plain, and the rare glowing parts are gold.</li>
-      <li>End the day on the Computer. Rent is due each night.</li>
+      <li>End the day on the Computer. Rent is due each night and changes from day to day.</li>
     </ol>
   </details>
 </div>
@@ -466,7 +552,7 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
   var SLOTNAME = { brain: 'Brain', heart: 'HeartCore', lungs: 'Lungs', liver: 'Liver', stomach: 'Stomach', intestine: 'Intestine', armL: 'Left arm', armR: 'Right arm', legL: 'Left leg', legR: 'Right leg', lidF: 'Face lid', lidT: 'Stomach lid' };
   var VOL = { brain: 1, heart: 1, lungs: 1, liver: 1, stomach: 1, intestine: 1, arm: 2, leg: 2, lidF: 1, lidT: 1, chassis: 6 };
   var COVER = { brain: 'lidF', heart: 'lidT', lungs: 'lidT', liver: 'lidT', stomach: 'lidT', intestine: 'lidT' };
-  var CAP = 20, TRAY_CAP = 8, BLOOD_PRICE = 15;
+  var CAP = 35, TRAY_CAP = 8, BLOOD_PRICE = 15;
   var HOLD_TIMES = [3000, 2200, 1500, 900];
   var UPG = { scalpel: { name: 'Scalpel', cost: [60, 120, 200] }, suture: { name: 'Suturing needle', cost: [60, 120, 200] } };
   var GRADEKEY = { Logics: 'log', Companion: 'emo', Combat: 'ins' };
@@ -691,7 +777,8 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
     return 'Average quality';
   }
   function critText(c) { return c.kind === 'text' ? c.txt : critLabel(c) + ' at least ' + c.min; }
-  function rent() { return 20 + 5 * (S.day - 1); }
+  function rollRent() { var base = 20 + 8 * (S.day - 1); return Math.max(15, Math.round(base * (0.7 + Math.random() * 0.65) / 5) * 5); }
+  function rent() { if (!S.rentToday) S.rentToday = rollRent(); return S.rentToday; }
   function freeSlots(b, kind) {
     var cand = kind === 'arm' ? ['armL', 'armR'] : kind === 'leg' ? ['legL', 'legR'] : [kind];
     return cand.filter(function (s) { return !b.inside[s]; });
@@ -879,11 +966,12 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
     return ch;
   }
   function startDay() {
-    var target = ri(25, 30);
+    var target = ri(38, 45);
     while (S.yard.length < target) S.yard.push(makeBody());
     ensureCoverage();
     makeOrders();
     S.dayDone = false; S.earned = 0;
+    S.rentPrev = S.rentToday || 0; S.rentToday = rollRent();
     var first = S.mails.filter(function (m) { return m.kind === 'order' && !m.read; })[0];
     S.openMail = first ? first.id : (S.mails.length ? S.mails[S.mails.length - 1].id : null);
   }
@@ -982,7 +1070,7 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
     var m = partMeta(p); return (p.unique || p.proto ? '★ ' : '') + p.name + (m ? ' · ' + m : '');
   }
   function stars(n) { var s = ''; for (var i = 0; i < Math.floor(n); i++) s += '★'; if (n % 1) s += '½'; return s + ' ' + n + ' / 5'; }
-  function skinOf(ch) { return ch.blood ? (ch.unique ? '#fff6e6' : '#f4f1ec') : '#8b8478'; }
+  function skinOf(ch) { if (ch.fromClient) return ch.blood ? '#f3c6c0' : '#9d6f69'; return ch.blood ? (ch.unique ? '#fff6e6' : '#f4f1ec') : '#8b8478'; }
 
   function avatar(seed, mood) {
     var tones = ['#c9a58a', '#8a7a6e', '#9fb3a3', '#b98c8c', '#7f95a8', '#c4b17f'];
@@ -1092,7 +1180,7 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
       '<clipPath id="' + cid + '"><rect x="116" y="164" width="168" height="168" rx="46"/></clipPath>' +
       '<rect x="116" y="164" width="168" height="168" rx="46" fill="#0d1214" stroke="' + cav + '" stroke-width="3"/>' +
       (bh ? '<rect x="116" y="' + (332 - bh) + '" width="168" height="' + bh + '" fill="#aab4ba" opacity="0.6" clip-path="url(#' + cid + ')"/>' : '') + '</svg>';
-    var h = '<div class="dollstage ' + size + (ch.awake ? ' awake' : '') + (ch.unique ? ' unique' : '') + (ch.fx && ch.awake ? ' fxed' : '') + (ch.star ? ' starred' : '') + '" data-pid="' + ch.id + '" data-tip="' + esc(ch.name + (ch.fx && ch.awake ? ' · Effect: ' + ch.fx.label : '')) + '"' + ((size === 'ontable' || size === 'yard') && S.map !== 'pack' ? ' data-drop="body:' + ch.id + '"' : '') + ' data-from="stage">' + art;
+    var h = '<div class="dollstage ' + size + (ch.awake ? ' awake' : '') + (ch.unique ? ' unique' : '') + (ch.fx && ch.awake ? ' fxed' : '') + (ch.star ? ' starred' : '') + (ch.fromClient ? ' client' : '') + '" data-pid="' + ch.id + '" data-tip="' + esc(ch.name + (ch.fromClient ? " · CLIENT'S UNIT. Not yours: fix it and send it back." : '') + (ch.fx && ch.awake ? ' · Effect: ' + ch.fx.label : '')) + '"' + ((size === 'ontable' || size === 'yard') && S.map !== 'pack' ? ' data-drop="body:' + ch.id + '"' : '') + ' data-from="stage">' + art;
     ['armL', 'armR', 'legL', 'legR'].forEach(function (x) { h += limbEl(ch, x, skin); });
     ['brain', 'heart', 'lungs', 'liver', 'stomach', 'intestine'].forEach(function (x) { h += organEl(ch, x); });
     h += lidEl(ch, 'lidF', skin) + lidEl(ch, 'lidT', skin) + '</div>';
@@ -1202,7 +1290,7 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
       }
       reading = '<div class="mhead">' + avatar(m.seed, m.mood || 'neutral') + '<div><div class="lab">' + esc(m.addr) + '</div><div class="subj">' + esc(m.subject) + '</div></div></div><p class="mbody">' + esc(m.body) + '</p>' + extra;
     }
-    var day = '<div class="panel shop"><div><h2>' + (S.dayDone ? 'All clients served' : 'End the day') + '</h2><p class="note">' + (S.dayDone ? 'You earned $' + S.earned + ' today. ' : 'Unfinished orders are dropped. ') + 'Rent is $' + rent() + ' and is due when the day ends. Wrecks left in the yard may vanish. Bodies in your warehouse stay.' + (S.money < rent() ? ' You cannot cover it, so you would go into debt.' : '') + '</p></div><button type="button" class="btn amber" data-act="next">End day ' + S.day + ' · rent $' + rent() + '</button></div>';
+    var day = '<div class="panel shop"><div><h2>' + (S.dayDone ? 'All clients served' : 'End the day') + '</h2><p class="note">' + (S.dayDone ? 'You earned $' + S.earned + ' today. ' : 'Unfinished orders are dropped. ') + 'Rent tonight is $' + rent() + (S.rentPrev ? (rent() > S.rentPrev ? ' (up from $' : rent() < S.rentPrev ? ' (down from $' : ' (same as $') + S.rentPrev + ' yesterday)' : '') + '. It is due when the day ends. Wrecks left in the yard may vanish. Bodies in your warehouse stay.' + (S.money < rent() ? ' You cannot cover it, so you would go into debt.' : '') + '</p></div><button type="button" class="btn amber" data-act="next">End day ' + S.day + ' · rent $' + rent() + '</button></div>';
     var shop = '<div class="panel shop"><div><h2>SSPG-1 supply</h2><p class="note">Synthetic Standard Plasma Generation 1. One bag fills one body. Bought bags land in your bag as items: drag one onto a body.</p></div><button type="button" class="btn amber" data-act="buy"' + (S.money < BLOOD_PRICE ? ' disabled' : '') + '>Buy one · $' + BLOOD_PRICE + '</button></div>';
     return (S.dayDone ? day : '') + '<div class="pc"><div class="panel"><h2>Inbox</h2><div class="inbox">' + list + '</div></div><div class="panel read">' + reading + '</div></div>' + shop + upgradesHTML() + (S.dayDone ? '' : day) + dbgHTML();
   }
@@ -1212,7 +1300,7 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
     return items.length ? '<div class="floor">' + items.map(function (p) { return itemHTML(p, 'mini'); }).join('') + '</div>' : '';
   }
   function viewYard() {
-    return '<div class="yard">' + S.yard.map(function (b) { return '<div class="wr" style="--rot:' + b.rot + 'deg">' + stageHTML(b, 'yard') + '</div>'; }).join('') + '</div>' + floorHTML('yard');
+    return '<div class="yardscroll" id="yardscroll"><div class="yard">' + S.yard.map(function (b) { return '<div class="wr" style="--rot:' + b.rot + 'deg">' + stageHTML(b, 'yard') + '</div>'; }).join('') + '</div></div><div class="lab yardcount">' + S.yard.length + ' wrecks · scroll sideways to see them all</div>' + floorHTML('yard');
   }
   function readoutHTML(T) {
     var o = curOrder();
@@ -1244,11 +1332,16 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
   function viewShop() {
     var side = trayHTML(), sh = '', h = '', i, n = benchCount(), focus = S.bi;
     for (i = 0; i < S.benches.length; i++) {
+      if (S.tut && S.tut.on && i > 0) continue;
       var o = orderAt(i), T = S.benches[i].table;
       if (i >= n && !o && !T) { h += '<section class="benchwrap lock"><div class="bhead"><b>Surgical table ' + (i + 1) + '</b><span>locked</span></div><div class="table empty"><p class="note">Train a second servant unit to set up a third table.</p></div></section>'; continue; }
       h += withBench(i, function () { return benchHTML(i, focus); });
     }
-    return sh + '<div class="benchgrid">' + h + '</div>' + floorHTML('shop') + side;
+    var single = S.benchView === 'single';
+    if (single) { h = ''; var o1 = orderAt(focus), T1 = S.benches[focus].table; h += withBench(focus, function () { return benchHTML(focus, focus); }); }
+    var bar = '<div class="bviewbar">' + (single ? '<button type="button" class="btn sm" data-act="benchprev" aria-label="Previous table">◀</button><b>Table ' + (focus + 1) + ' of ' + S.benches.length + '</b><button type="button" class="btn sm" data-act="benchnext" aria-label="Next table">▶</button>' : '<b>All tables</b>') +
+      '<button type="button" class="btn sm amber" data-act="benchview">' + (single ? 'Show all' : 'Single table') + '</button></div>';
+    return sh + bar + '<div class="benchgrid' + (single ? ' single' : '') + '">' + h + '</div>' + floorHTML('shop') + side;
   }
   function viewWarehouse() {
     var used = storeUsed(), cap = whCap(), lv = S.whLevel, max = lv >= WH_CAPS.length - 1;
@@ -1450,11 +1543,26 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
     say('Nothing to drop it on there.');
   }
 
+  function floatStats(pids) {
+    setTimeout(function () {
+      pids.forEach(function (pid, n) {
+        var els = document.querySelectorAll('[data-pid="' + pid + '"]'), el = null, k;
+        for (k = 0; k < els.length; k++) { var rr = els[k].getBoundingClientRect(); if (rr.width && rr.height) { el = els[k]; break; } }
+        var L = locate(pid); if (!el || !L) return;
+        var p = L.p, meta = partMeta(p); if (!meta || p.lid) return;
+        var r = el.getBoundingClientRect(), d = document.createElement('div');
+        d.className = 'fstat' + (p.cracked ? ' bad' : '');
+        d.innerHTML = '<b>' + esc(p.name) + '</b>' + esc(meta.replace(/ · /g, '\n')).replace(/\n/g, '<br>');
+        d.style.left = (r.left + r.width / 2) + 'px'; d.style.top = (r.top + 2) + 'px'; d.style.animationDelay = (n * 90) + 'ms';
+        document.body.appendChild(d); d.addEventListener('animationend', function () { d.remove(); });
+      });
+    }, 70);
+  }
   function scan(ch) {
     var n = 0, bad = 0;
     ch.seen = true;
     for (var k in ch.inside) if (ch.inside[k]) { ch.inside[k].seen = true; if (!ch.inside[k].lid) { n++; if (ch.inside[k].cracked) bad++; } }
-    ch.scanned = true;
+    ch.scanned = true; floatStats(SLOTS.filter(function (x) { return ch.inside[x]; }).map(function (x) { return ch.inside[x].id; }));
     say('Body scanned: quality ' + ch.q + ', appeal ' + ch.appeal + '. ' + n + ' parts inside' + (bad ? ', ' + bad + ' cracked.' : '. None cracked.'), bad ? 'warn' : '');
   }
   function wakeTest(ch) {
@@ -1499,11 +1607,15 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
       return;
     }
     if (t === 'diagnose') {
-      p.seen = true; if (L.chassis) L.chassis.scanned = false;
+      p.seen = true; if (L.chassis) L.chassis.scanned = false; floatStats([p.id]);
       say(p.name + (partMeta(p) ? ': ' + partMeta(p) + '.' : '.'), p.cracked ? 'bad' : '');
       return;
     }
     if (t === 'scalpel' || t === 'suture') { say('Press and hold that tool on a part that is inside a body.', 'warn'); return; }
+    if (SYRK[t] && L.where === 'inside' && L.chassis) {
+      if (p.fast) return actBodyTool(L.chassis, t);
+      say('Fasten that part first, then the syringe will work on it.', 'warn'); return;
+    }
     say('Use that one on a whole body, not on a loose part.', 'warn');
   }
   function evaluate(o, ch) {
@@ -1557,6 +1669,45 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
     }
     return null;
   }
+  /* snap: if you let go near the right spot, it goes to the nearest fitting one */
+  var SNAP_R = 95;
+  function slotFits(zs, p) { return zs === p.slot || kindOf(zs) === p.slot; }
+  function visible(el) { var r = el.getBoundingClientRect(); return r.width > 0 && r.height > 0; }
+  function nearest(sel, x, y, ok, bonus, rad) {
+    var best = null, bd = rad || SNAP_R, zs = document.querySelectorAll(sel), i;
+    for (i = 0; i < zs.length; i++) {
+      var z = zs[i]; if (!visible(z) || (ok && !ok(z))) continue;
+      var r = z.getBoundingClientRect(), dx = Math.max(r.left - x, 0, x - r.right), dy = Math.max(r.top - y, 0, y - r.bottom), d = Math.hypot(dx, dy) + (bonus ? bonus(z) : 0);
+      if (d < bd) { bd = d; best = z; }
+    }
+    return best;
+  }
+  function snapZone(d, x, y, zone) {
+    if (!d || !d.el) return zone;
+    var el = d.el, key = zone ? zone.getAttribute('data-drop') : '', snap = null;
+    if (el.hasAttribute('data-pid')) {
+      var L = locate(el.getAttribute('data-pid')); if (!L) return zone; var p = L.p;
+      if (p.slot === 'plasma' || p.slot === 'inject') {
+        if (/^(body:|slot:|cover:|table|bench:)/.test(key)) return zone;
+        snap = nearest('#view .dollstage[data-drop^="body:"]', x, y);
+      } else if (p.slot === 'chassis') {
+        if (/^(bench:|table|crate|tab:|trash|store|tray|bag)/.test(key)) return zone;
+        snap = nearest('#view [data-drop^="bench:"], #view [data-drop="table"]', x, y);
+      } else if (p.slot === 'data' || p.toy) { return zone; }
+      else {
+        var m = key.match(/^slot:([^:]+):(.+)$/);
+        if (m && slotFits(m[2], p)) return zone;
+        if (key && !/^(slot:|body:|cover:|floor:|table|bench:)/.test(key)) return zone;
+        var loose = key.indexOf('floor:') === 0 || key === 'table' || key.indexOf('bench:') === 0 ? 55 : 0;
+        snap = nearest('#view [data-drop^="slot:"]', x, y, function (z) { var q = z.getAttribute('data-drop').split(':'); return slotFits(q[2], p) && !(L.where === 'inside' && L.chassis && q[1] === L.chassis.id && q[2] === L.slot); },
+          function (z) { return z.querySelector('.part, .limb, .dlid') ? 40 : 0; }, loose);
+      }
+    } else if (el.hasAttribute('data-cratelid')) { if (key === 'crate') return zone; snap = nearest('#view [data-drop="crate"]', x, y); }
+    else if (el.hasAttribute('data-envflap')) { if (key === 'env') return zone; snap = nearest('#view [data-drop="env"]', x, y); }
+    else if (el.hasAttribute('data-label')) { if (key === 'crate' || key === 'env') return zone; snap = nearest('#view [data-drop="crate"], #view [data-drop="env"]', x, y); }
+    else if (el.hasAttribute('data-crateship') || el.hasAttribute('data-envship')) { if (key === 'ship') return zone; snap = nearest('#view [data-drop="ship"]', x, y); }
+    return snap || zone;
+  }
   function route(t) {
     var el;
     if ((el = t.closest('[data-pid]'))) return actPart(el.getAttribute('data-pid'));
@@ -1605,7 +1756,7 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
     if (edge && !drag.auto) { drag.auto = true; (function loop() { if (!drag || !drag.ghost) return; var ed = drag.cy < 90 ? -1 : drag.cy > window.innerHeight - 90 ? 1 : 0; if (!ed) { drag.auto = false; return; } window.scrollBy(0, ed * 14); requestAnimationFrame(loop); })(); }
     var old = document.querySelectorAll('.dropok');
     for (var oi = 0; oi < old.length; oi++) old[oi].classList.remove('dropok');
-    var z = dropAt(e.clientX, e.clientY);
+    var z = snapZone(drag, e.clientX, e.clientY, dropAt(e.clientX, e.clientY));
     if (z && z.id !== 'view') z.classList.add('dropok');
     e.preventDefault();
   }, { passive: false });
@@ -1616,7 +1767,8 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
     if (!d.ghost) { if (!cancelled) { var b4 = S.msg; tapPt = e ? { x: e.clientX, y: e.clientY } : null; route(d.target); if (d.pt === 'touch' && S.msg === b4) { var tpe = d.target.closest ? d.target.closest('[data-tip]') : null; if (tpe) say(tpe.getAttribute('data-tip')); } render(); } return; }
     d.ghost.remove(); d.el.style.opacity = '';
     if (!cancelled) {
-      var zone = dropAt(e.clientX, e.clientY); lastPtr = { x: e.clientX, y: e.clientY };
+      var zone = snapZone(d, e.clientX, e.clientY, dropAt(e.clientX, e.clientY)); lastPtr = { x: e.clientX, y: e.clientY };
+      if (zone && zone.getBoundingClientRect && !zone.classList.contains('tab')) { zone.classList.add('snapped'); setTimeout(function () { zone.classList.remove('snapped'); }, 400); }
       var key = zone ? zone.getAttribute('data-drop') : '';
       if (d.el.hasAttribute('data-pid')) dropPart(d.el.getAttribute('data-pid'), key);
       else if (d.el.hasAttribute('data-cratelid')) {
@@ -1651,7 +1803,8 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
     if (Date.now() < stopClickUntil && !t.closest('[data-tool],[data-map],[data-act],[data-cmd],[data-scroll]')) return;
     var el;
     if ((el = t.closest('[data-scroll]'))) {
-      var sd = el.getAttribute('data-scroll'), vh = window.innerHeight * 0.8, y = window.pageYOffset;
+      var sd = el.getAttribute('data-scroll'), vh = window.innerHeight * 0.8, y = window.pageYOffset, ys = S.map === 'yard' && document.getElementById('yardscroll');
+      if (ys && ys.scrollWidth > ys.clientWidth + 4) { ys.scrollTo({ left: sd === 'top' ? 0 : sd === 'bottom' ? ys.scrollWidth : ys.scrollLeft + (sd === 'up' ? -1 : 1) * ys.clientWidth * 0.8, behavior: 'smooth' }); return; }
       easeScroll(sd === 'top' ? 0 : sd === 'bottom' ? 1e7 : sd === 'up' ? y - vh : y + vh, sd === 'top' || sd === 'bottom' ? 800 : 520);
       return;
     }
@@ -1673,6 +1826,12 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
       } else if (a === 'buy') { if (S.money >= BLOOD_PRICE) { S.money -= BLOOD_PRICE; say('Bought one SSPG-1 bag. It is in your ' + stash(makePlasma()) + '.'); } }
       else if (a === 'upg') { var lv = S.upg[arg]; if (UPG[arg] && lv < HOLD_TIMES.length - 1 && S.money >= UPG[arg].cost[lv]) { S.money -= UPG[arg].cost[lv]; S.upg[arg]++; say(UPG[arg].name + ' upgraded. Hold time is now ' + (HOLD_TIMES[S.upg[arg]] / 1000).toFixed(1) + 's.'); } }
       else if (a === 'whup') { var wl = S.whLevel; if (wl < WH_CAPS.length - 1 && S.money >= WH_COST[wl]) { S.money -= WH_COST[wl]; S.whLevel++; say('Warehouse expanded. It now holds ' + whCap() + ' volume.'); } }
+      else if (a === 'benchview') { S.benchView = S.benchView === 'single' ? 'grid' : 'single'; }
+      else if (a === 'benchprev' || a === 'benchnext') {
+        var av = [], bk; for (bk = 0; bk < S.benches.length; bk++) if (bk < benchCount() || S.benches[bk].table || orderAt(bk)) av.push(bk);
+        var at = av.indexOf(S.bi), nx = av[(at + (a === 'benchnext' ? 1 : av.length - 1)) % av.length];
+        if (nx !== undefined && nx !== S.bi) { switchBench(nx); var bo2 = orderAt(nx); say('Table ' + (nx + 1) + (bo2 ? ': ' + bo2.client + '.' : ' is free.')); }
+      }
       else if (a === 'bench') { var bn = parseInt(arg, 10); if (bn >= 0 && bn < benchCount() || (S.benches[bn] && (S.benches[bn].table || orderAt(bn)))) { switchBench(bn); var bo = orderAt(bn); say('Bench ' + (bn + 1) + (bo ? ': ' + bo.client + '.' : ' is free.')); } }
       else if (a === 'dbg') { if (S.dbg.auth) S.dbg.open = !S.dbg.open; else S.dbg.ask = !S.dbg.ask; }
       else if (a === 'dbgkey') { if ((S.dbg.pw || '').length < 8) S.dbg.pw = (S.dbg.pw || '') + arg; }
@@ -2389,7 +2548,7 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
     withBench(b, function () {
       S.activeId = op.id;
       var at = ' on bench ' + (b + 1) + (b === 0 ? '' : ', queued behind the others') + '.';
-      if (op.kind === 'repair') { var rb = makeRepairBody(); rb.repOf = op.id; S.arrivals.push(rb); say('Repair accepted' + at + ' The unit is on that bench\'s packaging dock. Drag it to the workshop.'); }
+      if (op.kind === 'repair') { var rb = (S.tut && S.tut.on && typeof tutRepairBody === 'function') ? tutRepairBody() : makeRepairBody(); rb.repOf = op.id; S.arrivals.push(rb); say('Repair accepted' + at + ' The unit is on that bench\'s packaging dock. Drag it to the workshop.'); }
       else if (op.kind === 'research') { S.arrivals.push(makeProto(op)); say('Research accepted' + at + ' The prototype ' + (op.sub === 'organ' ? 'organ' : 'injection') + ' is on that bench\'s packaging dock.'); }
       else say('Order accepted' + at + ' Go find parts in the scrapyard.');
     });
@@ -3087,6 +3246,8 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
       if (!el) el = q('#view .pack');
     } else if (m === 'warehouse') el = q('#view .stored') || q('#view .panel');
     else if (m === 'computer') el = q('#view .inbox');
+    var ysc = el && el.closest && el.closest('#yardscroll');
+    if (ysc) { var er = el.getBoundingClientRect(), cr = ysc.getBoundingClientRect(); if (er.left < cr.left + 4 || er.right > cr.right - 4) ysc.scrollLeft += (er.left + er.width / 2) - (cr.left + cr.width / 2); }
     return el;
   }
   /* the servant arm is the unit's own arm: same outline, same skin, with the shoulder running up off the screen */
@@ -3425,7 +3586,615 @@ body.toolhold .dollstage, body.toolhold .dollstage * { touch-action: none; }
       z.a.carry = { a: from, b: to, k: 0, dur: CARRY_MS };
     });
   }
+
+  /* ================= tutorial: Stone teaches day 1 ================= */
+  var TUTO = {}, tutT = { arm: null, run: 0, poll: 0, card: null, block: null, since: 0 };
+  var TUT_PRAISE = ['That is it.', 'Good. Just like that.', 'You have it.', 'Clean work.', 'Exactly right.'];
+  function tutQ(s) { var q = typeof s === 'function' ? s() : s; return q ? document.querySelector(q) : null; }
+  function pidQ(id) { return '[data-pid="' + id + '"]'; }
+  function toolSel(t) { return '#tools [data-tool="' + t + '"]'; }
+  function tCh(id) { var L = id ? locate(id) : null; return L && L.p.slot === 'chassis' ? L.p : null; }
+  function tOrder(id) { for (var i = 0; i < S.orders.length; i++) if (S.orders[i].id === id) return S.orders[i]; return null; }
+  function bagPart(slot) { return S.bag.filter(function (p) { return p.slot === slot; })[0] || null; }
+  function bagHas(slot) { return !!bagPart(slot); }
+  function tPat() { return tCh(TUTO.pat); }
+  function tWreck() { return tCh(TUTO.wreck); }
+  function solid(kind) { var p = makePart(kind); p.cracked = false; p.fast = true; p.q = Math.max(p.q, 4); return p; }
+  function mkWreck() {
+    var ch = makeChassis(); ch.blood = 0; ch.tutW = 1; ch.rot = 0;
+    ['heart', 'lungs', 'liver'].forEach(function (x) { ch.inside[x] = solid(x); });
+    ch.inside.lidF = makeLid('lidF'); ch.inside.lidT = makeLid('lidT');
+    return ch;
+  }
+  function mkPatient(missKind, lidKey) {
+    var ch = makeChassis(); ch.blood = 0; ch.tutP = 1;
+    SLOTS.forEach(function (x) { if (kindOf(x) !== missKind) ch.inside[x] = solid(kindOf(x)); });
+    LIDSLOTS.forEach(function (x) { if (x !== lidKey) ch.inside[x] = makeLid(x); });
+    return ch;
+  }
+  function tutRepairBody() {
+    var ch = makeChassis(); ch.blood = 0; ch.fromClient = true; ch.tutR = 1;
+    SLOTS.forEach(function (x) { ch.inside[x] = solid(kindOf(x)); });
+    LIDSLOTS.forEach(function (x) { ch.inside[x] = makeLid(x); });
+    ch.inside.lungs.cracked = true; TUTO.rep = ch.id;
+    return ch;
+  }
+  function setPatient(ch) {
+    var w = S.benches[0];
+    if (w.table && w.table !== ch) { w.table.age = 0; S.floor.shop.push(w.table); }
+    w.table = ch; TUTO.pat = ch.id;
+  }
+  function ensurePatient(missKind, lidKey) {
+    var p = tPat();
+    if (!p || p.tutP !== 1 || !(S.benches[0].table === p)) { if (!(p && p.fromClient)) setPatient(mkPatient(missKind, lidKey)); }
+  }
+  function ensureBag(slot, make) { var p = tPat(); if (p && p.inside[slot]) return; if (!bagHas(slot)) { var n = make(); n.fast = false; S.bag.push(n); } }
+  function ensurePlasma() { var p = tPat(); if (p && !p.blood && !plasmaCount()) S.bag.push(makePlasma()); }
+  function findProtoAny(o) {
+    var lists = [S.bag, S.tray, S.floor.shop, S.floor.yard, S.floor.warehouse, S.benches[0].arrivals], i, j;
+    for (i = 0; i < lists.length; i++) for (j = 0; j < lists[i].length; j++) { var p = lists[i][j]; if (p.proto && o && p.proto.orderId === o.id) return p; }
+    var T = S.benches[0].table; if (T) for (var k in T.inside) { var q = T.inside[k]; if (q && q.proto && o && q.proto.orderId === o.id) return q; }
+    return null;
+  }
+  function tutFixBuildOrder() {
+    var o = tOrder(TUTO.bo), u = S.benches[0].pack || tPat(); if (!o || !u || o.state !== 'open') return;
+    var b = calc(u), st = STATS.slice().sort(function (a, c) { return b.stats[c] - b.stats[a]; })[0];
+    o.main = st; o.crit = [{ kind: 'stat', stat: st, min: Math.max(2, Math.floor(b.stats[st] * 0.6)) }];
+    S.mails.forEach(function (m) { if (m.orderId === o.id) { m.subject = 'Commission: ' + ROLE[st].replace(/^an? /, '') + ' unit'; m.body = 'Surgeon,\n\nI want ' + ROLE[st] + '. ' + NEED[st] + '\n\nMy terms are strict. Miss one and I send it back.\nPay: $' + o.pay + '.'; } });
+  }
+  function tutOrderSetup() {
+    var keepB = S.orders.filter(function (o) { return !o.kind; })[0], ro = S.orders.filter(function (o) { return o.kind === 'repair'; })[0], xo = S.orders.filter(function (o) { return o.kind === 'research'; })[0];
+    if (xo.sub !== 'organ') {
+      xo.sub = 'organ'; xo.crit = [{ kind: 'text', txt: 'Fit and fasten the prototype organ in a body' }, { kind: 'text', txt: 'Wake the body so the organ runs' }, { kind: 'text', txt: 'Send the data paper back in an envelope' }];
+      S.mails.forEach(function (m) { if (m.orderId === xo.id) { m.subject = 'Research: prototype organ'; m.body = 'Surgeon,\n\nI am sending you a prototype organ. It has never run in a body. Fit it, fasten it and wake the body. Only then will it print a data paper.\n\nPut the data paper in an envelope and send it back to me.\nPay: $' + xo.pay + '.'; } });
+    }
+    S.orders = [keepB, xo, ro];
+    S.mails = S.mails.filter(function (m) { return m.kind !== 'order' || m.orderId === keepB.id || m.orderId === xo.id || m.orderId === ro.id; });
+    TUTO.bo = keepB.id; TUTO.xo = xo.id; TUTO.ro = ro.id;
+    TUTO.bm = S.mails.filter(function (m) { return m.orderId === keepB.id; })[0].id; TUTO.xm = S.mails.filter(function (m) { return m.orderId === xo.id; })[0].id; TUTO.rm = S.mails.filter(function (m) { return m.orderId === ro.id; })[0].id;
+    S.openMail = null;
+  }
+  function tutHelper() {
+    var sl = S.svSlots.filter(function (z) { return z.tutH; })[0];
+    if (!sl) { var b = makePrimeBot(); b.name = 'Rivet'; sl = addToPlay(b); sl.nm = 'Rivet'; sl.tutH = 1; }
+    return sl;
+  }
+
+  /* ---- demo arm and ghost ---- */
+  function tutArm() {
+    var t = tutT.arm; if (t && document.body.contains(t.el)) return t;
+    var d = document.createElement('div'); d.className = 'sarm stone';
+    d.innerHTML = armSVG() + '<b class="tool"></b><i class="wring"></i>';
+    document.body.appendChild(d);
+    d.style.left = Math.round(window.innerWidth * 0.72) + 'px'; d.style.top = '-110px'; d.style.transform = 'scaleX(1)';
+    tutT.arm = { el: d, tl: d.querySelector('.tool'), ring: d.querySelector('.wring'), tool: 'hand' };
+    tutTool('hand'); return tutT.arm;
+  }
+  function tutTool(tool) {
+    var a = tutT.arm; if (!a) return; a.tool = tool;
+    a.tl.hidden = tool === 'hand'; a.tl.className = 'tool' + (tool === 'scalpel' ? ' flipped' : '');
+    a.tl.innerHTML = tool === 'hand' ? '' : (TOOLICON[tool] || '');
+  }
+  function tutMove(x, y, ms, cb) {
+    var a = tutArm(); a.el.style.setProperty('--d', ms + 'ms'); a.el.style.left = Math.round(x) + 'px'; a.el.style.top = Math.round(y) + 'px';
+    setTimeout(cb, ms + 40);
+  }
+  function tutPos(el) { var r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height * (el.classList.contains('dollstage') ? 0.42 : 0.5) }; }
+  function tutScroll(els, cb) {
+    var rs = els.filter(Boolean).map(function (e) { return e.getBoundingClientRect(); });
+    if (!rs.length) return cb();
+    var ys = rs.map(function (r) { return r.top + r.height / 2; }), mid = (Math.min.apply(null, ys) + Math.max.apply(null, ys)) / 2;
+    var ok = ys.every(function (y) { return y > 70 && y < window.innerHeight - 190; });
+    if (ok) return cb();
+    window.scrollBy({ top: mid - window.innerHeight * 0.36, behavior: 'smooth' }); setTimeout(cb, 650);
+  }
+  function tutAway(cb) {
+    var a = tutT.arm; if (!a) return cb && cb();
+    a.ring.style.display = 'none'; a.tl.classList.remove('cutting', 'stitching');
+    tutMove(window.innerWidth * 0.72, -120, 650, function () { if (tutT.arm) { tutT.arm.el.remove(); tutT.arm = null; } if (cb) cb(); });
+  }
+  function tutOp(op, run, next) {
+    if (run !== tutT.run) return;
+    var a = tutArm(), el, el2, p, p2;
+    if (op.a === 'wait') { setTimeout(next, op.ms); return; }
+    if (op.a === 'tool') {
+      el = tutQ(toolSel(op.t)); if (!el) { tutTool(op.t); return next(); }
+      p = tutPos(el);
+      tutMove(p.x, p.y + 6, 800, function () { fxRing(p.x, p.y, '#e0a93f', 46); tutTool(op.t); setTimeout(next, 380); });
+      return;
+    }
+    el = tutQ(op.s); if (!el) return next();
+    el2 = op.to ? tutQ(op.to) : null;
+    tutScroll([el, el2], function () {
+      if (run !== tutT.run) return;
+      p = tutPos(el); p2 = el2 ? tutPos(el2) : null;
+      if (op.a === 'tap' || op.a === 'syr') {
+        tutMove(p.x, p.y, 900, function () {
+          fxRing(p.x, p.y, op.a === 'syr' ? '#9aa6ae' : '#e0a93f', 46);
+          if (op.a === 'syr') for (var k = 0; k < 8; k++) spawnDot(p.x, p.y, op.col || '#9aa6ae', 3, 34, 460);
+          setTimeout(next, op.a === 'syr' ? 650 : 420);
+        });
+      } else if (op.a === 'hold') {
+        tutMove(p.x, p.y, 900, function () {
+          var cut = op.tool === 'scalpel', t0 = performance.now(), ms = op.ms || 2400;
+          a.ring.style.display = 'block'; a.ring.style.setProperty('--wc', cut ? '#b9c3c9' : '#a45cff');
+          a.tl.classList.add(cut ? 'cutting' : 'stitching');
+          var iv = setInterval(function () {
+            if (run !== tutT.run) { clearInterval(iv); return; }
+            var k = Math.min(1, (performance.now() - t0) / ms); a.ring.style.setProperty('--p', Math.round(k * 100));
+            if (Math.random() < 0.5) spawnDot(p.x, p.y, cut ? '#fff6d8' : '#f3ead9', 3, 30, 380);
+            if (k >= 1) { clearInterval(iv); a.ring.style.display = 'none'; a.tl.classList.remove('cutting', 'stitching'); fxRing(p.x, p.y, cut ? '#b9c3c9' : '#a45cff', 56); setTimeout(next, 450); }
+          }, 90);
+        });
+      } else if (op.a === 'drag' && p2) {
+        var g = el.cloneNode(true), r = el.getBoundingClientRect();
+        [].forEach.call(g.querySelectorAll('[data-pid],[data-drop],[data-label],[data-cratelid]'), function (n) { n.removeAttribute('data-pid'); n.removeAttribute('data-drop'); });
+        ['data-pid', 'data-drop', 'data-label', 'data-cratelid', 'data-crateship', 'data-envflap', 'data-envship'].forEach(function (k) { g.removeAttribute(k); });
+        g.className += ' tutghost'; g.style.width = Math.min(r.width, 130) + 'px'; g.style.left = p.x + 'px'; g.style.top = p.y + 'px'; g.style.setProperty('--d', '900ms');
+        tutMove(p.x, p.y, 900, function () {
+          document.body.appendChild(g); fxRing(p.x, p.y, '#e0a93f', 40);
+          setTimeout(function () {
+            if (run !== tutT.run) { g.remove(); return; }
+            g.style.setProperty('--d', '1100ms'); g.style.left = p2.x + 'px'; g.style.top = p2.y + 'px';
+            tutMove(p2.x, p2.y, 1100, function () {
+              fxRing(p2.x, p2.y, '#86bb91', 46); g.style.opacity = '0';
+              setTimeout(function () { g.remove(); next(); }, 360);
+            });
+          }, 350);
+        });
+      } else next();
+    });
+  }
+  function tutOps(ops, run, done) {
+    var i = 0;
+    (function nx() { if (run !== tutT.run) return; if (i >= ops.length) return done(); tutOp(ops[i++], run, nx); })();
+  }
+
+  /* ---- the lessons ---- */
+  var TS = [];
+  function stp(o) { TS.push(o); }
+  function fitChain(c) {
+    var P = function () { return tPat(); }, itemId = function () { var p = c.item(); return p ? p.id : ''; };
+    stp({ map: 'shop', ensure: c.ensure, say: c.say1, tryText: 'Drag it from your bag into the glowing slot.',
+      demo: function () { return [{ a: 'drag', s: function () { return '#bagwrap ' + pidQ(itemId()); }, to: function () { return '[data-drop="slot:' + TUTO.pat + ':' + c.slot + '"]'; } }]; },
+      hl: function () { return ['#bagwrap ' + pidQ(itemId()), '[data-drop="slot:' + TUTO.pat + ':' + c.slot + '"]']; },
+      check: function () { var p = P(); return !!(p && p.inside[c.slot]); } });
+    stp({ map: 'shop', say: 'It sits loose. The Needle fastens it. Watch: pick the Needle, then hold it on the part until the ring fills.', tryText: 'Pick the Needle and hold it on the part.',
+      demo: function () { return [{ a: 'tool', t: 'suture' }, { a: 'hold', tool: 'suture', ms: 2400, s: function () { var p = P(); return p && p.inside[c.slot] ? pidQ(p.inside[c.slot].id) : null; } }]; },
+      hl: function () { var p = P(); return [toolSel('suture'), p && p.inside[c.slot] ? pidQ(p.inside[c.slot].id) : null]; },
+      check: function () { var p = P(); return !!(p && p.inside[c.slot] && p.inside[c.slot].fast); } });
+    stp({ map: 'shop', ensure: function () { ensureBag(c.lid, function () { return makeLid(c.lid); }); }, say: 'Now the lid goes back on top. Drag it onto the body.', tryText: 'Drag the lid from your bag onto the open spot.',
+      demo: function () { return [{ a: 'drag', s: function () { var l = bagPart(c.lid); return l ? '#bagwrap ' + pidQ(l.id) : null; }, to: function () { return '[data-drop="slot:' + TUTO.pat + ':' + c.lid + '"]'; } }]; },
+      hl: function () { var l = bagPart(c.lid); return [l ? '#bagwrap ' + pidQ(l.id) : null, '[data-drop="slot:' + TUTO.pat + ':' + c.lid + '"]']; },
+      check: function () { var p = P(); return !!(p && p.inside[c.lid]); } });
+    stp({ map: 'shop', say: 'Needle on the lid too. A fastened lid closes the body.', tryText: 'Hold the Needle on the lid.',
+      demo: function () { return [{ a: 'hold', tool: 'suture', ms: 2400, s: function () { var p = P(); return p && p.inside[c.lid] ? pidQ(p.inside[c.lid].id) : null; } }]; },
+      hl: function () { var p = P(); return [toolSel('suture'), p && p.inside[c.lid] ? pidQ(p.inside[c.lid].id) : null]; },
+      check: function () { var p = P(); return !!(p && p.inside[c.lid] && p.inside[c.lid].fast); } });
+    stp({ map: 'shop', ensure: ensurePlasma, say: 'A dry body cannot run. It needs SSPG-1. Pick the SSPG-1 injector and tap the body.', tryText: 'Pick the SSPG-1 injector and tap the body.',
+      demo: function () { return [{ a: 'tool', t: 'blood' }, { a: 'syr', tool: 'blood', col: '#9aa6ae', s: function () { return pidQ(TUTO.pat); } }]; },
+      hl: function () { return [toolSel('blood'), pidQ(TUTO.pat)]; },
+      check: function () { var p = P(); return !!(p && p.blood); } });
+    stp({ map: 'shop', say: 'Last, Adrenaline wakes it. It checks the brain, the heart, the lids and the fastening.', tryText: 'Pick Adrenaline and tap the body.',
+      demo: function () { return [{ a: 'tool', t: 'adrenaline' }, { a: 'syr', tool: 'adrenaline', col: '#e0a93f', s: function () { return pidQ(TUTO.pat); } }]; },
+      hl: function () { return [toolSel('adrenaline'), pidQ(TUTO.pat)]; },
+      check: function () { var p = P(); return !!(p && p.awake); } });
+  }
+  function crateChain(afterMsg) {
+    stp({ map: 'shop', ensure: function () { switchBench(0); }, say: 'A running unit goes to packaging. Press Move to packaging under it.', tryText: 'Press Move to packaging.',
+      demo: function () { return [{ a: 'tap', s: '.benchwrap[data-benchwrap="0"] [data-act="pack"]' }]; },
+      hl: function () { return ['.benchwrap[data-benchwrap="0"] [data-act="pack"]']; },
+      check: function () { return !!S.benches[0].pack; } });
+    stp({ map: 'pack', ensure: function () { switchBench(0); }, say: 'Packaging. First the crate. Double click / double tap to drag the body, then drop the unit into it.', tryText: 'Double click / double tap to drag the body into the open crate.',
+      demo: function () { return [{ a: 'drag', s: '#view .wstage .dollstage', to: '[data-drop="crate"]' }]; },
+      hl: function () { return ['#view .wstage .dollstage', '[data-drop="crate"]']; },
+      check: function () { return !!S.benches[0].crateHas; } });
+    stp({ map: 'pack', say: 'Seal it: drag the lid onto the crate.', tryText: 'Drag the crate lid onto the crate.',
+      demo: function () { return [{ a: 'drag', s: '[data-cratelid]', to: '[data-drop="crate"]' }]; },
+      hl: function () { return ['[data-cratelid]', '[data-drop="crate"]']; },
+      check: function () { return !!S.benches[0].crateLid; } });
+    stp({ map: 'pack', say: 'And the shipping label goes on the crate.', tryText: 'Drag the label onto the crate.',
+      demo: function () { return [{ a: 'drag', s: '[data-label]', to: '[data-drop="crate"]' }]; },
+      hl: function () { return ['[data-label]', '[data-drop="crate"]']; },
+      check: function () { return !!S.benches[0].crateLabel; } });
+  }
+  function mailSteps(key, word) {
+    var oid = function () { return TUTO[key + 'o']; }, mid = function () { return TUTO[key + 'm']; };
+    stp({ map: 'computer', ensure: function () { switchBench(0); S.openMail = null; if (key === 'b') tutFixBuildOrder(); },
+      say: 'Open the ' + word + ' email. It lists the terms.', tryText: 'Tap the ' + word + ' email.',
+      demo: function () { return [{ a: 'tap', s: '.mail[data-arg="' + mid() + '"]' }]; },
+      hl: function () { return ['.mail[data-arg="' + mid() + '"]']; }, check: function () { return S.openMail === mid() || (tOrder(oid()) || {}).state !== 'open'; } });
+    stp({ map: 'computer', ensure: function () { switchBench(0); if (S.openMail !== mid()) S.openMail = mid(); },
+      say: 'Read the terms. If you can meet them, press Accept.', tryText: 'Press Accept order.',
+      demo: function () { return [{ a: 'tap', s: '[data-act="accept"]' }]; },
+      hl: function () { return ['[data-act="accept"]']; }, check: function () { return (tOrder(oid()) || {}).state !== 'open'; } });
+  }
+  (function build() {
+    stp({ map: 'computer', info: true, say: "The anesthesia has not worn off yet? Well, let me recall you what to do. Let's start in the scrapyard." });
+    /* 1 scrapyard */
+    stp({ map: 'yard', ensure: function () { if (!tWreck()) { var w = mkWreck(); S.yard.unshift(w); TUTO.wreck = w.id; } }, say: 'The scrapyard. Dead units lie here full of parts. Everything starts with the Scalpel.', tryText: 'Tap the Scalpel.',
+      demo: function () { return [{ a: 'tool', t: 'scalpel' }]; }, hl: function () { return [toolSel('scalpel')]; }, check: function () { return S.tool === 'scalpel'; } });
+    stp({ map: 'yard', ensure: function () { if (!tWreck()) { var w = mkWreck(); S.yard.unshift(w); TUTO.wreck = w.id; } }, say: 'This glowing wreck has a HeartCore. Hold the scalpel on its torso lid until the ring fills.', tryText: 'Press and hold the Scalpel on the glowing lid.',
+      demo: function () { return [{ a: 'hold', tool: 'scalpel', ms: 2600, s: function () { var w = tWreck(); return w && w.inside.lidT ? pidQ(w.inside.lidT.id) : null; } }]; },
+      hl: function () { var w = tWreck(); return [w && w.inside.lidT ? pidQ(w.inside.lidT.id) : null]; },
+      check: function () { var w = tWreck(), l = w && w.inside.lidT; return !l || !l.fast; } });
+    stp({ map: 'yard', ensure: function () { S.tool = S.tool; }, say: 'The lid is loose. Take the Hand and drag the lid into your bag.', tryText: 'Pick the Hand, then drag the lid into the bag.',
+      demo: function () { return [{ a: 'tool', t: 'hand' }, { a: 'drag', s: function () { var w = tWreck(), l = w && w.inside.lidT; return l ? pidQ(l.id) : null; }, to: '#bagwrap .bag' }]; },
+      hl: function () { var w = tWreck(), l = w && w.inside.lidT; return [S.tool !== 'hand' ? toolSel('hand') : null, l ? pidQ(l.id) : null, '#bagwrap .bag']; },
+      check: function () { return bagHas('lidT'); } });
+    stp({ map: 'yard', say: 'With the lid off, the HeartCore is exposed. Scalpel again. Hold it on the heart.', tryText: 'Pick the Scalpel and hold it on the heart.',
+      demo: function () { return [{ a: 'tool', t: 'scalpel' }, { a: 'hold', tool: 'scalpel', ms: 2600, s: function () { var w = tWreck(), h = w && w.inside.heart; return h ? pidQ(h.id) : null; } }]; },
+      hl: function () { var w = tWreck(), h = w && w.inside.heart; return [toolSel('scalpel'), h ? pidQ(h.id) : null]; },
+      check: function () { var w = tWreck(), h = w && w.inside.heart; return !h || !h.fast; } });
+    stp({ map: 'yard', say: 'Hand again. Drag the heart into your bag.', tryText: 'Pick the Hand and drag the heart into the bag.',
+      demo: function () { return [{ a: 'tool', t: 'hand' }, { a: 'drag', s: function () { var w = tWreck(), h = w && w.inside.heart; return h ? pidQ(h.id) : null; }, to: '#bagwrap .bag' }]; },
+      hl: function () { var w = tWreck(), h = w && w.inside.heart; return [S.tool !== 'hand' ? toolSel('hand') : null, h ? pidQ(h.id) : null, '#bagwrap .bag']; },
+      check: function () { return bagHas('heart'); } });
+    stp({ map: 'yard', info: true, say: 'Good. A heart and a lid are yours now. Anything in the bag is. Next: the workshop.' });
+    /* 2 workshop */
+    fitChain({ slot: 'heart', lid: 'lidT', item: function () { return bagPart('heart'); },
+      ensure: function () { switchBench(0); ensurePatient('heart', 'lidT'); ensureBag('heart', function () { return solid('heart'); }); },
+      say1: 'The workshop. This patient has no HeartCore and no torso lid. Drag your heart into the glowing slot.' });
+    stp({ map: 'shop', info: true, say: 'It is running. See the smile? A running unit can be shipped, or put to work for you.' });
+    /* 3 packaging */
+    crateChain();
+    stp({ map: 'pack', info: true, say: 'The truck only takes a unit that is promised to a client. We need a commission. But first: automation.' });
+    /* 4 automation */
+    stp({ map: 'play', ensure: function () { tutHelper(); closeCtx(); }, say: 'The playground. Any running unit can work for you. I lend you Rivet. Tap it to give it orders.', tryText: 'Tap Rivet.',
+      demo: function () { return [{ a: 'tap', s: '.pgunit[data-servant]' }]; }, hl: function () { return ['.pgunit[data-servant]']; }, check: function () { return !!ctx; } });
+    stp({ map: 'play', ensure: function () { var sl = tutHelper(); if (!ctx) { var el = document.querySelector('.pgunit[data-servant]'), r = el ? el.getBoundingClientRect() : { left: 80, top: 300, width: 40, height: 80 }; openUnitMenu(sl, r.left + r.width, r.top); } ctxShow(sl, 'top'); },
+      say: 'Every job is a menu. Pick "Find parts": it searches the scrapyard for what the contract needs.', tryText: 'Choose Find parts.',
+      demo: function () { return [{ a: 'tap', s: '.ctx [data-cmd="menu"][data-menu="find"]' }]; },
+      hl: function () { return ['.ctx [data-cmd="menu"][data-menu="find"]']; }, check: function () { return !!(ctx && ctx.querySelector('[data-cmd="run"]')); } });
+    stp({ map: 'play', ensure: function () { var sl = tutHelper(); if (!ctx) { var el = document.querySelector('.pgunit[data-servant]'), r = el ? el.getBoundingClientRect() : { left: 80, top: 300, width: 40, height: 80 }; openUnitMenu(sl, r.left + r.width, r.top); } ctxShow(sl, 'find'); },
+      say: 'Execute once does it one time. Automate keeps doing it for every commission. That is automation. Choose Automate.', tryText: 'Choose Automate.',
+      demo: function () { return [{ a: 'tap', s: '.ctx [data-cmd="run"][data-mode="auto"]' }]; },
+      hl: function () { return ['.ctx [data-cmd="run"][data-mode="auto"]']; },
+      check: function () { var sl = tutHelper(); return !!(sl && sl.auto); },
+      after: function () { var sl = tutHelper(); if (sl) sl.paused = true; closeCtx(); } });
+    stp({ map: 'play', info: true, say: 'Rivet is on automation. I paused it so it stays out of our way. Open its menu to resume any time. More units and more benches means more work done at once.' });
+    /* 5 commissions */
+    mailSteps('b', 'build');
+    stp({ map: 'pack', ensure: function () { switchBench(0); }, say: 'Your crate is labelled with the client now. Drag it onto the delivery truck.', tryText: 'Drag the sealed crate onto the truck.',
+      demo: function () { return [{ a: 'drag', s: '[data-crateship]', to: '[data-drop="ship"]' }]; },
+      hl: function () { return ['[data-crateship]', '[data-drop="ship"]']; }, check: function () { return (tOrder(TUTO.bo) || {}).state === 'done'; } });
+    stp({ map: 'computer', info: true, say: 'Paid. The client writes back with stars: a unit that meets every term earns the full rate. Miss one and it comes back at half.' });
+    /* 6 research */
+    stp({ map: 'computer', info: true, say: 'Research. A client sends a prototype and wants data on it. You fit it, wake the body, and send back the paper it prints.' });
+    mailSteps('x', 'research');
+    stp({ map: 'pack', ensure: function () { switchBench(0); }, say: 'The prototype organ waits on the dock. Drag it onto the Workshop tab.', tryText: 'Drag the prototype onto the Workshop tab.',
+      demo: function () { return [{ a: 'drag', s: '.dock [data-pid]', to: '#maps [data-map="shop"]' }]; },
+      hl: function () { return ['.dock [data-pid]', '#maps [data-map="shop"]']; },
+      check: function () { var p = findProtoAny(tOrder(TUTO.xo)); return !!p && S.benches[0].arrivals.indexOf(p) < 0; } });
+    stp({ map: 'shop', ensure: function () { switchBench(0); S.tool = 'hand'; }, say: 'It is on the workshop floor. Tap it with the Hand to pick it up.', tryText: 'Tap the prototype to put it in your bag.',
+      demo: function () { return [{ a: 'tool', t: 'hand' }, { a: 'tap', s: function () { var p = findProtoAny(tOrder(TUTO.xo)); return p && S.floor.shop.indexOf(p) >= 0 ? '.floor ' + pidQ(p.id) : null; } }]; },
+      hl: function () { var p = findProtoAny(tOrder(TUTO.xo)); return [S.tool !== 'hand' ? toolSel('hand') : null, p && S.floor.shop.indexOf(p) >= 0 ? '.floor ' + pidQ(p.id) : null]; },
+      check: function () { var p = findProtoAny(tOrder(TUTO.xo)); return !!p && S.bag.indexOf(p) >= 0; } });
+    protoChain();
+    stp({ map: 'shop', ensure: function () { switchBench(0); }, say: 'The body ran the prototype, so a data paper printed into your bag. Drag it onto the Packaging tab.', tryText: 'Drag the data paper onto the Packaging tab.',
+      demo: function () { return [{ a: 'drag', s: function () { var p = S.bag.filter(function (q) { return q.slot === 'data'; })[0]; return p ? '#bagwrap ' + pidQ(p.id) : null; }, to: '#maps [data-map="pack"]' }]; },
+      hl: function () { var p = S.bag.filter(function (q) { return q.slot === 'data'; })[0]; return [p ? '#bagwrap ' + pidQ(p.id) : null, '#maps [data-map="pack"]']; },
+      check: function () { return S.benches[0].env.desk.length > 0 || !!S.benches[0].env.paper || (tOrder(TUTO.xo) || {}).state === 'done'; } });
+    stp({ map: 'pack', ensure: function () { switchBench(0); }, say: 'Papers go in an envelope. Drag the paper into it.', tryText: 'Drag the paper into the envelope.',
+      demo: function () { return [{ a: 'drag', s: '.floor [data-pid]', to: '[data-drop="env"]' }]; },
+      hl: function () { return ['.floor [data-pid]', '[data-drop="env"]']; }, check: function () { return !!S.benches[0].env.paper; } });
+    stp({ map: 'pack', say: 'Flap on.', tryText: 'Drag the flap onto the envelope.',
+      demo: function () { return [{ a: 'drag', s: '[data-envflap]', to: '[data-drop="env"]' }]; }, hl: function () { return ['[data-envflap]', '[data-drop="env"]']; }, check: function () { return !!S.benches[0].env.flap; } });
+    stp({ map: 'pack', say: 'Then the label.', tryText: 'Drag the label onto the envelope.',
+      demo: function () { return [{ a: 'drag', s: '[data-label]', to: '[data-drop="env"]' }]; }, hl: function () { return ['[data-label]', '[data-drop="env"]']; }, check: function () { return !!S.benches[0].env.label; } });
+    stp({ map: 'pack', say: 'Onto the truck.', tryText: 'Drag the envelope onto the truck.',
+      demo: function () { return [{ a: 'drag', s: '[data-envship]', to: '[data-drop="ship"]' }]; }, hl: function () { return ['[data-envship]', '[data-drop="ship"]']; },
+      check: function () { return (tOrder(TUTO.xo) || {}).state === 'done'; } });
+    /* 7 repair */
+    stp({ map: 'computer', info: true, say: 'Repair. A client sends in a broken unit. You fix it and send it back. It is their unit, not yours.' });
+    mailSteps('r', 'repair');
+    stp({ map: 'pack', ensure: function () { switchBench(0); }, say: 'See the RED unit? Red means it belongs to the client. It is not yours to strip, keep or sell. Only fix it, then send it back. Double click / double tap to drag the body onto the Workshop tab.', tryText: 'Double click / double tap to drag the red unit onto the Workshop tab.',
+      demo: function () { return [{ a: 'drag', s: '.dock .dollstage', to: '#maps [data-map="shop"]' }]; },
+      hl: function () { return ['.dock .dollstage', '#maps [data-map="shop"]']; },
+      check: function () { var T = S.benches[0].table; return !!(T && T.fromClient); } });
+    stp({ map: 'shop', ensure: function () { switchBench(0); }, say: 'Something inside is broken. The Diagnostic tool scans it. Pick it and tap the body.', tryText: 'Pick the Diagnostic tool and tap the red body.',
+      demo: function () { return [{ a: 'tool', t: 'diagnose' }, { a: 'syr', tool: 'diagnose', col: '#8fb0c0', s: function () { return pidQ(TUTO.rep); } }]; },
+      hl: function () { return [toolSel('diagnose'), pidQ(TUTO.rep)]; }, check: function () { var T = S.benches[0].table; return !!(T && T.fromClient && T.scanned); } });
+    stp({ map: 'shop', say: 'The lungs are cracked, hidden under the torso lid. Scalpel on the lid first.', tryText: 'Pick the Scalpel and hold it on the torso lid.',
+      demo: function () { return [{ a: 'tool', t: 'scalpel' }, { a: 'hold', tool: 'scalpel', ms: 2600, s: function () { var T = S.benches[0].table, l = T && T.inside.lidT; return l ? pidQ(l.id) : null; } }]; },
+      hl: function () { var T = S.benches[0].table, l = T && T.inside.lidT; return [toolSel('scalpel'), l ? pidQ(l.id) : null]; },
+      check: function () { var T = S.benches[0].table, l = T && T.inside.lidT; return !l || !l.fast; } });
+    stp({ map: 'shop', say: 'Take the lid off into your bag. Hand tool.', tryText: 'Drag the lid into your bag.',
+      demo: function () { return [{ a: 'tool', t: 'hand' }, { a: 'drag', s: function () { var T = S.benches[0].table, l = T && T.inside.lidT; return l ? pidQ(l.id) : null; }, to: '#bagwrap .bag' }]; },
+      hl: function () { var T = S.benches[0].table, l = T && T.inside.lidT; return [S.tool !== 'hand' ? toolSel('hand') : null, l ? pidQ(l.id) : null, '#bagwrap .bag']; },
+      check: function () { return bagHas('lidT') && !(S.benches[0].table && S.benches[0].table.inside.lidT); } });
+    stp({ map: 'shop', say: 'Now cut the cracked lungs loose with the scalpel.', tryText: 'Pick the Scalpel and hold it on the lungs.',
+      demo: function () { return [{ a: 'tool', t: 'scalpel' }, { a: 'hold', tool: 'scalpel', ms: 2600, s: function () { var T = S.benches[0].table, p = T && T.inside.lungs; return p ? pidQ(p.id) : null; } }]; },
+      hl: function () { var T = S.benches[0].table, p = T && T.inside.lungs; return [toolSel('scalpel'), p ? pidQ(p.id) : null]; },
+      check: function () { var T = S.benches[0].table, p = T && T.inside.lungs; return !p || !p.fast; } });
+    stp({ map: 'shop', say: 'Broken parts go in the discard bin. Drag the lungs out and into the bin.', tryText: 'Drag the cracked lungs to the Discard bin.',
+      demo: function () { return [{ a: 'tool', t: 'hand' }, { a: 'drag', s: function () { var T = S.benches[0].table, p = T && T.inside.lungs; return p ? pidQ(p.id) : null; }, to: '.trash' }]; },
+      hl: function () { var T = S.benches[0].table, p = T && T.inside.lungs; return [S.tool !== 'hand' ? toolSel('hand') : null, p ? pidQ(p.id) : null, '.trash']; },
+      check: function () { var T = S.benches[0].table; return !!(T && !T.inside.lungs); } });
+    fitChain({ slot: 'lungs', lid: 'lidT', item: function () { return bagPart('lungs'); },
+      ensure: function () { switchBench(0); if (TUTO.rep) TUTO.pat = TUTO.rep; if (!bagHas('lungs') && !(tPat() && tPat().inside.lungs && !tPat().inside.lungs.cracked)) { var l = solid('lungs'); l.fast = false; S.bag.push(l); } },
+      say1: 'I put a spare pair of lungs in your bag. Drag them into the empty slot.' });
+    /* repair ships back */
+    crateChain();
+    stp({ map: 'pack', ensure: function () { switchBench(0); }, say: 'Last one: the repaired unit goes back on the truck.', tryText: 'Drag the sealed crate onto the truck.',
+      demo: function () { return [{ a: 'drag', s: '[data-crateship]', to: '[data-drop="ship"]' }]; },
+      hl: function () { return ['[data-crateship]', '[data-drop="ship"]']; }, check: function () { return (tOrder(TUTO.ro) || {}).state === 'done'; } });
+    /* 8 end of day */
+    stp({ map: 'computer', ensure: function () { switchBench(0); }, say: 'Every client served. Time to end the day. Rent comes due, new emails arrive, the yard gets picked over.', tryText: 'Press End day.',
+      demo: function () { return [{ a: 'tap', s: '[data-act="next"]' }]; }, hl: function () { return ['[data-act="next"]']; }, check: function () { return S.day >= 2; } });
+  })();
+  function protoChain() {
+    var P = function () { return tPat(); }, X = function () { return findProtoAny(tOrder(TUTO.xo)); };
+    stp({ map: 'shop', ensure: function () {
+        switchBench(0); var p = X(); if (!p) return;
+        TUTO.xslot = p.slot; TUTO.xlid = COVER[p.slot]; var T = tPat();
+        if (!(T && T.tutP === 1 && !T.fromClient && S.benches[0].table === T && !T.inside[p.slot] && !T.blood)) { if (!(T && T.inside[p.slot] === p)) setPatient(mkPatient(p.slot, COVER[p.slot])); }
+        if (S.bag.indexOf(p) < 0 && !(tPat() && tPat().inside[p.slot] === p)) { var L = locate(p.id); if (L) removePart(p.id); S.bag.push(p); }
+      },
+      say: 'Fit the prototype into the empty slot. Same as before: drag, then fasten.', tryText: 'Drag the prototype from your bag into the glowing slot.',
+      demo: function () { var p = X(); return [{ a: 'drag', s: p ? '#bagwrap ' + pidQ(p.id) : null, to: p ? '[data-drop="slot:' + TUTO.pat + ':' + p.slot + '"]' : null }]; },
+      hl: function () { var p = X(); return [p ? '#bagwrap ' + pidQ(p.id) : null, p ? '[data-drop="slot:' + TUTO.pat + ':' + p.slot + '"]' : null]; },
+      check: function () { var p = X(), T = P(); return !!(p && T && T.inside[p.slot] === p); } });
+    stp({ map: 'shop', say: 'Needle on the prototype.', tryText: 'Hold the Needle on the prototype.',
+      demo: function () { var p = X(); return [{ a: 'tool', t: 'suture' }, { a: 'hold', tool: 'suture', ms: 2400, s: p ? pidQ(p.id) : null }]; },
+      hl: function () { var p = X(); return [toolSel('suture'), p ? pidQ(p.id) : null]; }, check: function () { var p = X(); return !!(p && p.fast); } });
+    stp({ map: 'shop', ensure: function () { var T = P(), k = TUTO.xlid; if (k && !(T && T.inside[k]) && !bagHas(k)) { var l = makeLid(k); l.fast = false; S.bag.push(l); } }, say: 'Lid back on.', tryText: 'Drag the lid from your bag onto the body.',
+      demo: function () { var l = bagPart(TUTO.xlid); return [{ a: 'drag', s: l ? '#bagwrap ' + pidQ(l.id) : null, to: '[data-drop="slot:' + TUTO.pat + ':' + TUTO.xlid + '"]' }]; },
+      hl: function () { var l = bagPart(TUTO.xlid); return [l ? '#bagwrap ' + pidQ(l.id) : null, '[data-drop="slot:' + TUTO.pat + ':' + TUTO.xlid + '"]']; },
+      check: function () { var T = P(); return !!(T && T.inside[TUTO.xlid]); } });
+    stp({ map: 'shop', say: 'Needle on the lid.', tryText: 'Hold the Needle on the lid.',
+      demo: function () { var T = P(), l = T && T.inside[TUTO.xlid]; return [{ a: 'hold', tool: 'suture', ms: 2400, s: l ? pidQ(l.id) : null }]; },
+      hl: function () { var T = P(), l = T && T.inside[TUTO.xlid]; return [toolSel('suture'), l ? pidQ(l.id) : null]; },
+      check: function () { var T = P(), l = T && T.inside[TUTO.xlid]; return !!(l && l.fast); } });
+    stp({ map: 'shop', ensure: ensurePlasma, say: 'SSPG-1 in.', tryText: 'Pick the SSPG-1 injector and tap the body.',
+      demo: function () { return [{ a: 'tool', t: 'blood' }, { a: 'syr', tool: 'blood', col: '#9aa6ae', s: pidQ(TUTO.pat) }]; },
+      hl: function () { return [toolSel('blood'), pidQ(TUTO.pat)]; }, check: function () { var T = P(); return !!(T && T.blood); } });
+    stp({ map: 'shop', say: 'Wake it. The prototype only runs in a living body, and then it prints the paper.', tryText: 'Pick Adrenaline and tap the body.',
+      demo: function () { return [{ a: 'tool', t: 'adrenaline' }, { a: 'syr', tool: 'adrenaline', col: '#e0a93f', s: pidQ(TUTO.pat) }]; },
+      hl: function () { return [toolSel('adrenaline'), pidQ(TUTO.pat)]; }, check: function () { var T = P(); return !!(T && T.awake); } });
+  }
+
+  /* ---- Stone's card and the lesson runner ---- */
+  var STONE_AV = '<svg viewBox="0 0 80 80" aria-hidden="true"><rect width="80" height="80" fill="#231f1c"/><ellipse cx="40" cy="45" rx="23" ry="27" fill="#a39a8c"/><rect x="14" y="14" width="52" height="11" fill="#3b322c"/><rect x="22" y="22" width="36" height="5" fill="#3b322c"/><circle cx="31" cy="40" r="3" fill="#100e0d"/><circle cx="49" cy="40" r="3" fill="#100e0d"/><path d="M31 58 L49 58" stroke="#100e0d" stroke-width="2.5"/><path d="M24 52 Q40 70 56 52" stroke="#6f675d" stroke-width="3" fill="none"/><path d="M44 30 L52 44" stroke="#6f675d" stroke-width="2"/></svg>';
+  function tutCard() {
+    if (!tutT.card) {
+      var c = document.createElement('div'); c.id = 'stone'; document.body.appendChild(c); tutT.card = c;
+      c.addEventListener('click', function (e) {
+        var b = e.target.closest ? e.target.closest('[data-tut]') : null; if (!b) return;
+        var k = b.getAttribute('data-tut');
+        if (k === 'again') tutRedo('No problem. Watch me again.');
+        else if (k === 'next') tutNext();
+        else if (k === 'skip') tutSkip();
+      });
+    }
+    return tutT.card;
+  }
+  function tutPanel(text, btns) {
+    var c = tutCard();
+    c.innerHTML = '<div class="stone-av">' + STONE_AV + '</div><div class="stone-body"><div class="stone-name">STONE <small>lesson ' + (S.tut.i + 1) + ' of ' + TS.length + '</small></div><p>' + esc(text) + '</p><div class="stone-btns">' + btns + '<button type="button" class="btn sm lnk" data-tut="skip">Skip lesson</button></div></div>';
+    document.body.classList.add('tuton');
+  }
+  function tutBlock(on) {
+    if (on && !tutT.block) { var b = document.createElement('div'); b.id = 'tutblock'; document.body.appendChild(b); tutT.block = b; }
+    else if (!on && tutT.block) { tutT.block.remove(); tutT.block = null; }
+  }
+  function tutStep() { return TS[S.tut.i]; }
+  function tutBegin(i, redoMsg) {
+    if (!S.tut || !S.tut.on) return;
+    if (i >= TS.length) return tutFinish();
+    S.tut.i = i; S.tut.phase = 'demo'; S.tut.since = Date.now(); tutT.run++;
+    var run = tutT.run, st = TS[i];
+    closeCtxIf(st);
+    if (st.ensure) st.ensure();
+    if (st.check && !redoMsg && st.check()) { S.tut.i = i + 1; return tutBegin(i + 1); }
+    if (st.map && S.map !== st.map) { S.map = st.map; }
+    render();
+    tutPanel(redoMsg ? redoMsg + ' ' + st.say : st.say, '');
+    if (st.info) { S.tut.phase = 'try'; tutBlock(false); tutPanel(st.say, '<button type="button" class="btn sm amber" data-tut="next">Next</button>'); return; }
+    tutBlock(true);
+    setTimeout(function () {
+      if (run !== tutT.run) return;
+      tutOps(st.demo(), run, function () {
+        tutAway(function () {
+          if (run !== tutT.run) return;
+          S.tut.phase = 'try'; S.tut.since = Date.now(); tutBlock(false);
+          tutPanel(st.tryText || 'Your turn.', '<button type="button" class="btn sm" data-tut="again">Show me again</button>');
+        });
+      });
+    }, 650);
+  }
+  function closeCtxIf(st) { if (st && st.map !== 'play') closeCtx(); }
+  function tutRedo(msg) { if (!S.tut || !S.tut.on) return; S.tut.redo++; tutAway(); tutBegin(S.tut.i, msg || 'Let me show you again.'); }
+  function tutNext() { if (!S.tut || !S.tut.on) return; tutT.run++; tutAway(); tutBegin(S.tut.i + 1); }
+  function tutOk() {
+    var st = tutStep(); S.tut.phase = 'ok'; tutT.run++;
+    if (st.after) st.after();
+    tutPanel(pick(TUT_PRAISE), '');
+    setTimeout(function () { if (S.tut && S.tut.on && S.tut.phase === 'ok') tutNext(); }, 950);
+  }
+  function tutFinish() {
+    S.tut.phase = 'done'; tutBlock(false);
+    tutPanel('That is the trade. You can build, ship, research, repair and automate. The scrapyard is yours. I will be around. Good luck.', '<button type="button" class="btn sm amber" data-tut="skip">Done</button>');
+  }
+  function tutSkip() {
+    if (!S.tut) return; S.tut.on = false; tutT.run++; tutBlock(false); tutAway();
+    if (tutT.card) { tutT.card.remove(); tutT.card = null; }
+    document.body.classList.remove('tuton'); [].forEach.call(document.querySelectorAll('.tutglow'), function (n) { n.classList.remove('tutglow'); });
+    render();
+  }
+  setInterval(function () {
+    if (!S.tut || !S.tut.on) return;
+    var st = tutStep(); if (!st) return;
+    [].forEach.call(document.querySelectorAll('.tutglow'), function (n) { n.classList.remove('tutglow'); });
+    if (S.tut.phase !== 'try' || st.info) return;
+    if (S.bi !== 0 && !drag && !hold) { switchBench(0); renderOrder(); }
+    if (st.check && st.check()) { tutOk(); return; }
+    var hl = st.hl ? st.hl() : [];
+    if (st.map && S.map !== st.map) hl = ['#maps [data-map="' + st.map + '"]'];
+    hl.forEach(function (q) { var n = q ? document.querySelector(q) : null; if (n) n.classList.add('tutglow'); });
+    if (Date.now() - S.tut.since > 50000) tutRedo('Let me show you that again.');
+  }, 400);
+  function tutInit() {
+    if (S.day !== 1) return;
+    S.tut = { on: true, i: 0, phase: 'none', since: 0, redo: 0 };
+    var w = mkWreck(); TUTO.wreck = w.id; S.yard = [w].concat(S.yard.slice(0, 44));
+    tutOrderSetup();
+    S.map = 'computer'; render();
+    tutBegin(0);
+  }
+
+  /* ---------- save slots, autosave, save when leaving ---------- */
+  var BS = { P: 'biomechanics.', slot: 0, t: 0, confirm: '', ct: 0, mode: 'title', day: 0 };
+  var BS_SKIP = { table: 1, pack: 1, crateHas: 1, crateLid: 1, crateLabel: 1, env: 1, arrivals: 1, dbg: 1, msg: 1, msgKind: 1, tut: 1, pkLock: 1, tagGame: 1, ballGame: 1, ballCool: 1 };
+  var bsStore = (function () { try { var k = BS.P + 'probe'; window.localStorage.setItem(k, '1'); window.localStorage.removeItem(k); return window.localStorage; } catch (e) { return null; } })();
+  function bsSnapshot() {
+    var snap = {}, extra = [];
+    Object.keys(S).forEach(function (key) { if (!BS_SKIP[key]) snap[key] = S[key]; });
+    snap.svSlots = S.svSlots.map(function (sl) {
+      var c = {}, k; for (k in sl) c[k] = sl[k];
+      if (sl.job && sl.job.carry) { sl.job.carry.age = 0; extra.push(sl.job.carry); }
+      c.job = null; c.paused = false; c.held = false; c.partner = null; c.tx = null; c.ty = null; c.riding = false; c.walking = false; c.stopping = false; c.hold = 0; c.until = 0; c.sayUntil = 0;
+      if (c.mode !== 'stay') c.mode = 'wander';
+      if (c.auto) c.auto = { cmd: c.auto.cmd, served: {}, next: 0 };
+      return c;
+    });
+    if (extra.length) snap.yard = S.yard.concat(extra);
+    return { v: 1, t: Date.now(), nid: nid, svSeq: svSeq, s: snap };
+  }
+  function bsKey(n, what) { return BS.P + what + n; }
+  function bsMeta(n) { if (!bsStore) return null; try { var m = JSON.parse(bsStore.getItem(bsKey(n, 'meta'))); return m && m.t ? m : null; } catch (e) { return null; } }
+  function bsRead(n) {
+    if (!bsStore) return null;
+    try { var d = JSON.parse(bsStore.getItem(bsKey(n, 'slot'))); return d && d.v === 1 && d.s && typeof d.s === 'object' ? d : null; } catch (e) { return null; }
+  }
+  function bsWrite(n, quiet) {
+    if (!bsStore || !n) return false;
+    if (S.tut && S.tut.on) { if (!quiet) say('Finish or skip the tutorial first. Saving starts right after it.', 'warn'); return false; }
+    try {
+      var d = bsSnapshot();
+      bsStore.setItem(bsKey(n, 'slot'), JSON.stringify(d));
+      bsStore.setItem(bsKey(n, 'meta'), JSON.stringify({ t: d.t, day: S.day, money: S.money, bots: S.svSlots.length }));
+      bsStore.setItem(BS.P + 'last', String(n));
+      if (n === BS.slot) { BS.t = d.t; BS.day = S.day; }
+      bsStamp();
+      return true;
+    } catch (e) {
+      if (!quiet) say('Could not save: the device storage is full or blocked.', 'warn');
+      return false;
+    }
+  }
+  function bsApply(d) {
+    var s = d.s;
+    if (typeof d.nid === 'number' && d.nid > nid) nid = d.nid;
+    if (typeof d.svSeq === 'number') svSeq = d.svSeq;
+    Object.keys(s).forEach(function (k) { if (!BS_SKIP[k] && k !== 'benches' && k !== 'bi') S[k] = s[k]; });
+    if (s.benches && s.benches.length) {
+      S.benches = s.benches.map(function (w) { var n = newWs(), k; for (k in w) n[k] = w[k]; if (!n.env || !n.env.desk) n.env = newEnv(); if (!n.arrivals) n.arrivals = []; return n; });
+      while (S.benches.length < 3) S.benches.push(newWs());
+    }
+    S.bi = typeof s.bi === 'number' && s.bi >= 0 && s.bi < S.benches.length ? s.bi : 0;
+    var o = orderAt(S.bi); S.activeId = o ? o.id : null;
+    S.pkLock = null; S.tagGame = null; S.ballGame = null; S.tut = null; S.dbg = { ask: false, auth: false };
+    S.svSlots.forEach(function (sl) { sl.job = null; sl.paused = false; });
+    S.msg = 'Game loaded.'; S.msgKind = '';
+  }
+  function bsClock(t) { var d = new Date(t), p = function (x) { return (x < 10 ? '0' : '') + x; }; return p(d.getHours()) + ':' + p(d.getMinutes()); }
+  function bsWhen(t) { var d = new Date(t); return d.toLocaleDateString() + ' ' + bsClock(t); }
+  function bsStamp() {
+    var b = document.getElementById('bsbtn'); if (!b) return;
+    b.textContent = !bsStore ? '💾 No saving' : BS.slot ? '💾 Slot ' + BS.slot + (BS.t ? ' · ' + bsClock(BS.t) : '') : '💾 Save';
+  }
+  function bsAsk(key) {
+    if (BS.confirm === key) { BS.confirm = ''; clearTimeout(BS.ct); return true; }
+    BS.confirm = key; clearTimeout(BS.ct); BS.ct = setTimeout(function () { BS.confirm = ''; bsMenuRender(); }, 3500); bsMenuRender(); return false;
+  }
+  function bsMenuRender() {
+    var m = document.getElementById('bsmenu'); if (!m) return;
+    if (BS.mode === 'main') {
+      var lastN = bsStore ? parseInt(bsStore.getItem(BS.P + 'last'), 10) : 0, lm = lastN ? bsMeta(lastN) : null;
+      m.innerHTML = '<div class="bsbox bsmain"><h1>Biomechanics</h1><p class="bsnote">Build, repair and ship living machines out of scrap.</p>' +
+        '<button type="button" class="btn amber bsbig" data-bs="play:0">Play</button>' +
+        (lm && bsRead(lastN) ? '<button type="button" class="btn bsbig" data-bs="load:' + lastN + '">Continue · Slot ' + lastN + ' · Day ' + lm.day + '</button>' : '') +
+        (!bsStore ? '<p class="bswarn">Saving is blocked here: the browser or app has storage turned off.</p>' : '') + '</div>';
+      return;
+    }
+    var game = BS.mode === 'game', h = '<div class="bsbox">';
+    h += game ? '<h2>Save slots</h2><p class="bsnote">Your game autosaves every 15 seconds and when you leave the app. Slot ' + (BS.slot || '–') + ' is the one in use.</p>' : '<h1>Biomechanics</h1><p class="bsnote">Pick a slot. Your progress autosaves every 15 seconds and whenever you leave the app. A new game saves once the tutorial is over.</p>';
+    if (!bsStore) h += '<p class="bswarn">Saving is blocked here: the browser or app has storage turned off. Turn on DOM storage for the WebView to keep your progress.</p>';
+    [1, 2, 3].forEach(function (n) {
+      var mt = bsMeta(n), on = BS.slot === n, b = '';
+      if (game) {
+        if (mt) b += '<button type="button" class="btn" data-bs="load:' + n + '">Load</button>';
+        b += '<button type="button" class="btn amber" data-bs="save:' + n + '">' + (on ? 'Save now' : BS.confirm === 'save:' + n ? 'Tap again to overwrite' : mt ? 'Copy here' : 'Save here') + '</button>';
+      } else if (mt) b += '<button type="button" class="btn amber" data-bs="load:' + n + '">Continue</button>';
+      else b += '<button type="button" class="btn amber" data-bs="new:' + n + '">New game</button>';
+      if (mt) b += '<button type="button" class="btn bsdanger" data-bs="del:' + n + '">' + (BS.confirm === 'del:' + n ? 'Tap again to delete' : 'Delete') + '</button>';
+      h += '<div class="bsslot' + (on ? ' on' : '') + '"><div><span class="bsname">Slot ' + n + (on ? '<i>PLAYING</i>' : '') + '</span><div class="bsinfo">' + (mt ? 'Day ' + mt.day + ' · $' + mt.money + ' · ' + mt.bots + ' servant' + (mt.bots === 1 ? '' : 's') + '<br>Saved ' + bsWhen(mt.t) : on ? 'Not saved yet. The first autosave comes within 15 seconds of the tutorial ending.' : 'Empty') + '</div></div><div class="bsbtns">' + b + '</div></div>';
+    });
+    if (game) h += '<div class="bsbtns"><button type="button" class="btn" data-bs="close:0">Back to game</button><button type="button" class="btn" data-bs="quit:0">Save and go to title</button></div>';
+    if (!game) h += '<div class="bsbtns"><button type="button" class="btn" data-bs="back:0">Back</button></div>';
+    m.innerHTML = h + '</div>';
+  }
+  function bsShow(mode) { var m = document.getElementById('bsmenu'); if (!m) return; BS.mode = mode; BS.confirm = ''; bsMenuRender(); m.hidden = false; }
+  function bsHide() { var m = document.getElementById('bsmenu'); if (m) m.hidden = true; }
+  function bsReload() { try { window.location.reload(); } catch (e) { window.location.href = window.location.href; } }
+  function bsAct(act, n) {
+    if (act === 'close') { bsHide(); return; }
+    if (act === 'play') { BS.mode = 'title'; BS.confirm = ''; bsMenuRender(); return; }
+    if (act === 'back') { BS.mode = 'main'; BS.confirm = ''; bsMenuRender(); return; }
+    if (act === 'new') { BS.slot = n; bsHide(); bsStamp(); tutInit(); return; }
+    if (act === 'load') {
+      if (!bsRead(n)) { bsMenuRender(); return; }
+      if (BS.mode === 'game' && !BS.slot && !bsAsk('load:' + n)) return;
+      if (BS.mode === 'game' && BS.slot) bsWrite(BS.slot, true);
+      if (bsStore) bsStore.setItem(BS.P + 'pending', String(n));
+      bsReload(); return;
+    }
+    if (act === 'save') {
+      if (BS.slot && n !== BS.slot && bsMeta(n) && !bsAsk('save:' + n)) return;
+      var ok = bsWrite(n, false);
+      if (ok && !BS.slot) { BS.slot = n; BS.t = Date.now(); BS.day = S.day; }
+      if (ok) say('Saved to slot ' + n + '.');
+      bsStamp(); bsMenuRender(); return;
+    }
+    if (act === 'del') {
+      if (!bsAsk('del:' + n)) return;
+      if (bsStore) { bsStore.removeItem(bsKey(n, 'slot')); bsStore.removeItem(bsKey(n, 'meta')); }
+      if (BS.slot === n) { BS.slot = 0; BS.t = 0; }
+      bsStamp(); bsMenuRender(); return;
+    }
+    if (act === 'quit') { if (BS.slot) bsWrite(BS.slot, true); bsReload(); }
+  }
+  function bsLeave() { if (BS.slot) bsWrite(BS.slot, true); }
+  function bsInit() {
+    var m = document.createElement('div'); m.id = 'bsmenu'; m.hidden = true; document.body.appendChild(m);
+    m.addEventListener('click', function (e) {
+      var b = e.target && e.target.closest ? e.target.closest('[data-bs]') : null; if (!b) return;
+      e.stopPropagation(); var a = b.getAttribute('data-bs').split(':'); bsAct(a[0], parseInt(a[1], 10) || 0);
+    });
+    var top = document.querySelector('header.top'), btn = document.createElement('button');
+    btn.type = 'button'; btn.id = 'bsbtn'; btn.className = 'btn sm bsbtn'; if (top) top.appendChild(btn);
+    btn.addEventListener('click', function () { bsShow('game'); });
+    bsStamp();
+    setInterval(function () { if (BS.slot) bsWrite(BS.slot, true); }, 15000);
+    setInterval(function () { if (BS.slot && S.day !== BS.day) bsWrite(BS.slot, true); }, 2000);
+    document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') bsLeave(); });
+    window.addEventListener('pagehide', bsLeave);
+    window.addEventListener('beforeunload', bsLeave);
+    document.addEventListener('pause', bsLeave);
+  }
+  function bsBoot() {
+    bsInit();
+    var pend = bsStore ? parseInt(bsStore.getItem(BS.P + 'pending'), 10) : 0;
+    if (bsStore) bsStore.removeItem(BS.P + 'pending');
+    var d = pend ? bsRead(pend) : null;
+    if (d) { bsApply(d); BS.slot = pend; BS.t = d.t; BS.day = S.day; bsStamp(); render(); return; }
+    bsShow('main');
+  }
+  bsBoot();
+
 })();
 </script>
 
 </body></html>
+  
